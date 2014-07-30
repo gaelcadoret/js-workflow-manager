@@ -3,32 +3,40 @@ js-workflow-manager
 
 Javascript workflow manager - Call method stored in an array
 
-#Example of use
+##Example of use
 ```
 var boosterWorkflow = new Workflow();
-boosterWorkflow.add(new WorkflowItem("splashscreen", 5000, this.splashscreen, booster2014.callback1));
-boosterWorkflow.add(new WorkflowItem("intro", 3000, this.intro, booster2014.callback2));
-boosterWorkflow.add(new WorkflowItem("popup-info", 1000, this.popupInfo, booster2014.callback3));
-boosterWorkflow.add(new WorkflowItem("stake-prompt-popup", 5000, this.stakePromptPopup));
+boosterWorkflow.add(new WorkflowItem("splashscreen", 5000, myApp.splashscreen, myApp.callback1));
+boosterWorkflow.add(new WorkflowItem("intro", 3000, myApp.intro, myApp.callback2));
+boosterWorkflow.add(new WorkflowItem("popup-info", 1000, myApp.popupInfo, myApp.callback3));
+boosterWorkflow.add(new WorkflowItem("stake-prompt-popup", 5000, myApp.stakePromptPopup));
 boosterWorkflow.run();
 ```
 
-##***** WARNING *****
+###***** WARNING *****
 ====================
-###In your "action" function, you must notify that the process has started by calling notify function :
+####In your "action" function, you must notify that the process has started by calling notify function :
 ==> `Workflow.prototype.notify('START');`
-```
-animation_1: function() {
-    Workflow.prototype.notify('START');
-    // Do something here
-}
-```
-
-###In your "callback" function, you must notify that the process has finished by calling notify function :
+####In your "callback" function, you must notify that the process has finished by calling notify function :
 ==> `Workflow.prototype.notify('END');`
 
+Let see example below :
 ```
-callback1: function() {
-    Workflow.prototype.notify('END');
+var App = function() {};
+
+App.prototype = {
+    ...
+    splashscreen: function() {
+        Workflow.prototype.notify('START');
+        // Do something here
+    },
+    
+    callback1: function() {
+       Workflow.prototype.notify('END');
+    }
+    ...
+    
 }
+
+var myApp = new App();
 ```
