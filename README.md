@@ -3,7 +3,7 @@ js-workflow-manager
 
 Javascript workflow manager - Call method stored in an array
 
-##Example of use
+#Example of use
 ```
 var boosterWorkflow = new Workflow();
 boosterWorkflow.add(new WorkflowItem("splashscreen", 5000, this.splashscreen, booster2014.callback1));
@@ -13,9 +13,9 @@ boosterWorkflow.add(new WorkflowItem("stake-prompt-popup", 5000, this.stakePromp
 boosterWorkflow.run();
 ```
 
-#***** WARNING *****
+##***** WARNING *****
 ====================
-#In your "action" function, you must notify that the process has started by calling notify function :
+###In your "action" function, you must notify that the process has started by calling notify function :
 ==> `Workflow.prototype.notify('START');`
 ```
 animation_1: function() {
@@ -24,7 +24,7 @@ animation_1: function() {
 }
 ```
 
-#In your "callback" function, you must notify that the process has finished by calling notify function :
+###In your "callback" function, you must notify that the process has finished by calling notify function :
 ==> `Workflow.prototype.notify('END');`
 
 ```
